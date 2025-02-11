@@ -1,33 +1,71 @@
-# React + TypeScript + Vite
+# Candidate Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This web application utilizes the GitHub REST API to query GitHub user names as a mock "candidate"
+search for potential hires. It utilizes React to display a valid profile that has a Name, Location,
+and a Bio. Users can either select a candidate for further consideration, or remove the candidate from consideration to move on to the next potential. The second page will pull from localStorage to display all saved candidates which will allow review and further refinement by removing candidates from this list.
 
-* [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md), which uses [Babel](https://babeljs.io/) for Fast Refresh
-* [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc), which uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contribute](#contribute)
+- [Tests](#tests)
+- [Questions](#questions)
+- [License](#license)
 
-If you're developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Installation
 
-* Configure the top-level `parserOptions` property as follows:
+1. Clone this repo utilizing the green `<> Code` button to the folder of your choice. Optionally, download the source.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+2. Create a [fine-grained personal access token on GitHub.](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
 
-* Replace `plugin:@typescript-eslint/recommended` with `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`.
-* Optionally, add `plugin:@typescript-eslint/stylistic-type-checked`.
-* Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` and `plugin:react/jsx-runtime` to the `extends` list.
+3. Add this token to a .env file in the /environments folder as VITE_GITHUB_TOKEN.
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+4. Run 'npm i' to initialize and download dependencies. You will need Node.js which can be acquired from the [Node.js website.](https://nodejs.org)
+
+5. Run 'npm run dev' to initialize the site locally. Deployment of the web app is outside the scope of these instructions (follow your platform of choice's documentation).
+
+## Usage
+
+[Live version of the website](https://bright-toffee-48e73e.netlify.app/)
+
+The main page shows the current candidate. It may take a few moments to load as many people do not meet the criteria (Name, Location, and Bio filled out).
+
+The buttons are fairly small (this is mainly a React / API demonstration, sorry). The left button will skip the 'candidate'. The right button will add the candidate to the potential candidates list in localStorage.
+
+You can click on the Potential Candidates link at the top to view all of your saved candidates. The button in the table will remove that candidate permanently if you so choose.
+
+
+## Contribute
+
+[Please check out the repo here!](https://github.com/ant-codes-42/candidate-search)
+
+## Questions
+
+The author maintains a [GitHub account here](https://github.com/ant-codes-42).
+
+## License
+
+This work is licensed under the MIT License.
+
+Copyright 2025 Anthony Schwab
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+OR OTHER DEALINGS IN THE SOFTWARE.
