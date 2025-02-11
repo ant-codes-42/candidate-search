@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 //import { searchGithub, searchGithubUser } from '../api/API';
 import { ICandidate, ICandidateList } from '../interfaces/CandidateInterface';
-import { IoCloseCircle } from 'react-icons/io5';
+import { IoCloseCircle, IoAddCircle } from 'react-icons/io5';
 
 const CandidateSearch = () => {
-  const [logins, setLogins] = useState<string[]>([]);
-  const [candidate, setCandidate] = useState<ICandidate | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [logins, setLogins] = useState<string[]>([]); // Array of usernames
+  const [candidate, setCandidate] = useState<ICandidate | null>(null); // This is the candidate object
+  const [isLoading, setIsLoading] = useState<boolean>(false); // Bool for loading state conditional formatting
+  const [storedCands, setStored] = useState<ICandidate[]>([]); // This is the array of candidate objects that goes into localStorage
 
+  // Function to get the array of logins
   const fetchLogins = async () => {
     const start = Math.floor(Math.random() * 100000000) + 1;
     const response = await fetch(
@@ -23,6 +25,7 @@ const CandidateSearch = () => {
     setLogins(loginsList);
   };
 
+  // Function to get the user object data
   const fetchUser = async (username: string) => {
     try {
       setIsLoading(true); // Set loading to true for conditional formatting
@@ -48,6 +51,10 @@ const CandidateSearch = () => {
   // Initial load of logins
   useEffect(() => {
     fetchLogins();
+    const stored = localStorage.getItem('storedCandidates');
+    if (stored) {
+      setStored(JSON.parse(stored));
+    }
   }, []);
 
   // Update candidate whenever logins changes
@@ -58,7 +65,7 @@ const CandidateSearch = () => {
       // Refresh logins when we run out
       fetchLogins();
     }
-  }, [logins]);
+  }, [logins]); //Adding fetchLogins here starts a chain reaction that makes everything go haywire, idk
 
   // Function to handle moving to next candidate
   const handleNext = () => {
@@ -66,6 +73,16 @@ const CandidateSearch = () => {
       setLogins(prevLogins => prevLogins.slice(1)); // Slice first login off
     }
   };
+
+  // Function to save candidate to localStorage
+  const saveCandidate = () => {
+    if (candidate) {
+      const updatedCandidates = [...storedCands, candidate];
+      setStored(updatedCandidates);
+      localStorage.setItem('storedCandidates', JSON.stringify(updatedCandidates));
+      handleNext();
+    }
+  }
 
   return (
     <>
@@ -92,7 +109,10 @@ const CandidateSearch = () => {
           )}
         </>
       )}
+      <div>
       <button onClick={handleNext}><IoCloseCircle /></button>
+      <button onClick={saveCandidate}><IoAddCircle /></button> {/* Need save logic here*/}
+      </div>
     </>
   );
 };

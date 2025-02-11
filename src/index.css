@@ -90,6 +90,11 @@ tr {
   color: white;
 }
 
+td img {
+  max-height: 150px;
+  max-width: 11vw;
+}
+
 tbody tr:nth-child(odd) {
   background-color: #333333;
 }
