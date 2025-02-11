@@ -29,7 +29,7 @@ and a Bio. Users can either select a candidate for further consideration, or rem
 
 ## Usage
 
-[Live version of the website](https://bright-toffee-48e73e.netlify.app/)
+[Live version of the website](https://candidate-search-pcgy.onrender.com)
 
 The main page shows the current candidate. It may take a few moments to load as many people do not meet the criteria (Name, Location, and Bio filled out).
 
