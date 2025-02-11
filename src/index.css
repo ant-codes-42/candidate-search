@@ -96,6 +96,7 @@ tbody tr:nth-child(odd) {
 
 .nav {
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   padding: 1em 2em;
 }

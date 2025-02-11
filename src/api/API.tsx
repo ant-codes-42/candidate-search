@@ -1,4 +1,6 @@
-const searchGithub = async () => {
+import { ICandidate, ICandidateList } from "../interfaces/CandidateInterface";
+
+const searchGithub = async (): Promise<(ICandidateList[] | [])> => {
   try {
     const start = Math.floor(Math.random() * 100000000) + 1;
     // console.log(import.meta.env);
@@ -23,7 +25,7 @@ const searchGithub = async () => {
   }
 };
 
-const searchGithubUser = async (username: string) => {
+const searchGithubUser = async (username: string): Promise<(ICandidate | object)> => {
   try {
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
